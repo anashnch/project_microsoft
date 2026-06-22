@@ -52,9 +52,11 @@
             align-items: center;
         }
 
-        svg {
+        .cat-image {
             width: 280px;
-            height: 280px;
+            max-width: 100%;
+            height: auto;
+            border-radius: 30px;
             filter: drop-shadow(0 10px 25px rgba(100, 50, 150, 0.15));
         }
 
@@ -157,61 +159,7 @@
         <p class="subtitle">Tajná moudrost kočky čeká na tebe...</p>
 
         <div class="cat-section">
-            <svg viewBox="0 0 200 280" xmlns="http://www.w3.org/2000/svg">
-                <!-- Skupina s animací pro skok -->
-                <g class="cat-body">
-                    <!-- Ocas (mává) -->
-                    <path class="cat-tail" d="M 145 160 Q 175 130 180 70 Q 182 40 175 20" 
-                          fill="none" stroke="#9B59B6" stroke-width="22" stroke-linecap="round"/>
-                    
-                    <!-- Tělo -->
-                    <ellipse cx="100" cy="150" rx="52" ry="70" fill="#FFFFFF"/>
-                    <!-- Pruhy na těle -->
-                    <ellipse cx="100" cy="120" rx="50" ry="12" fill="#E8B4E8" opacity="0.5"/>
-                    <ellipse cx="100" cy="155" rx="50" ry="12" fill="#E8B4E8" opacity="0.5"/>
-                    <ellipse cx="100" cy="185" rx="48" ry="10" fill="#E8B4E8" opacity="0.5"/>
-                    
-                    <!-- Hlava -->
-                    <circle cx="100" cy="65" r="45" fill="#FFFFFF"/>
-                    
-                    <!-- Levé ucho -->
-                    <polygon points="68,28 55,0 75,32" fill="#FFFFFF"/>
-                    <polygon points="68,28 62,10 72,30" fill="#E8B4E8" opacity="0.7"/>
-                    
-                    <!-- Pravé ucho -->
-                    <polygon points="132,28 145,0 125,32" fill="#FFFFFF"/>
-                    <polygon points="132,28 138,10 128,30" fill="#E8B4E8" opacity="0.7"/>
-                    
-                    <!-- Levé oko -->
-                    <circle cx="80" cy="55" r="8" fill="#2C3E50"/>
-                    <circle cx="83" cy="52" r="3" fill="#FFFFFF"/>
-                    
-                    <!-- Pravé oko -->
-                    <circle cx="120" cy="55" r="8" fill="#2C3E50"/>
-                    <circle cx="123" cy="52" r="3" fill="#FFFFFF"/>
-                    
-                    <!-- Nos -->
-                    <polygon points="100,72 95,80 105,80" fill="#FF85CC"/>
-                    
-                    <!-- Ústa -->
-                    <path d="M 100 80 Q 94 86 88 82" fill="none" stroke="#2C3E50" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M 100 80 Q 106 86 112 82" fill="none" stroke="#2C3E50" stroke-width="2" stroke-linecap="round"/>
-                    
-                    <!-- Fousáky -->
-                    <line x1="62" y1="62" x2="30" y2="58" stroke="#2C3E50" stroke-width="1.5" stroke-linecap="round"/>
-                    <line x1="62" y1="70" x2="28" y2="75" stroke="#2C3E50" stroke-width="1.5" stroke-linecap="round"/>
-                    <line x1="138" y1="62" x2="170" y2="58" stroke="#2C3E50" stroke-width="1.5" stroke-linecap="round"/>
-                    <line x1="138" y1="70" x2="172" y2="75" stroke="#2C3E50" stroke-width="1.5" stroke-linecap="round"/>
-                    
-                    <!-- Přední levá tlaška -->
-                    <ellipse cx="78" cy="215" rx="14" ry="22" fill="#FFFFFF"/>
-                    <ellipse cx="78" cy="220" rx="12" ry="10" fill="#E8B4E8" opacity="0.6"/>
-                    
-                    <!-- Přední pravá tlaška -->
-                    <ellipse cx="122" cy="215" rx="14" ry="22" fill="#FFFFFF"/>
-                    <ellipse cx="122" cy="220" rx="12" ry="10" fill="#E8B4E8" opacity="0.6"/>
-                </g>
-            </svg>
+            <img src="kockaa.png" alt="Kočka" class="cat-image">
         </div>
 
         <div class="fortune-display">
