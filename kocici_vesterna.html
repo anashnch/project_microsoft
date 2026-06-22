@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kočičí Věštírna</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #FF6BB6 0%, #FF85CC 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 30px;
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(255, 107, 182, 0.2),
+                        inset 0 0 30px rgba(255, 255, 255, 0.5);
+            max-width: 600px;
+            text-align: center;
+            border: 3px solid #FFB6D9;
+        }
+
+        .cat-container {
+            width: 280px;
+            height: 280px;
+            margin: 0 auto 30px;
+        }
+
+        svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 8px 15px rgba(0, 0, 0, 0.08));
+        }
+
+        @keyframes catBounce {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .cat-whole {
+            animation: catBounce 1.5s ease-in-out infinite;
+        }
+
+        @keyframes tailWag {
+            0%, 100% { transform: rotate(-8deg); transform-origin: 50% 0%; }
+            50% { transform: rotate(12deg); transform-origin: 50% 0%; }
+        }
+
+        .cat-tail {
+            animation: tailWag 1s ease-in-out infinite;
+        }
+
+        h1 {
+            color: #2C3E50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .subtitle {
+            color: #FF6BB6;
+            font-size: 1.2em;
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+
+        .paws {
+            display: flex;
+            justify-content: space-around;
+            margin: 30px 0;
+            opacity: 0.7;
+        }
+
+        .paw {
+            font-size: 60px;
+            animation: pawWave 1s ease-in-out infinite;
+        }
+
+        .paw:nth-child(1) { animation-delay: 0s; }
+        .paw:nth-child(2) { animation-delay: 0.2s; }
+        .paw:nth-child(3) { animation-delay: 0.4s; }
+        .paw:nth-child(4) { animation-delay: 0.6s; }
+
+        @keyframes pawWave {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(15deg); }
+        }
+
+        .fortune-box {
+            background: linear-gradient(135deg, #FFF5FB 0%, #FFEBF5 100%);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            border: 2px solid #FFB6D9;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .fortune-text {
+            color: #2C3E50;
+            font-size: 1.3em;
+            font-style: italic;
+            font-weight: bold;
+            line-height: 1.6;
+        }
+
+        .button-container {
+            margin: 30px 0;
+        }
+
+        button {
+            background: transparent;
+            color: #FF6BB6;
+            border: 2px solid #FF6BB6;
+            padding: 14px 35px;
+            font-size: 1.1em;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 107, 182, 0.3);
+            background: #FF6BB6;
+            color: white;
+        }
+
+        button:active {
+            transform: translateY(-1px);
+        }
+
+        .shine {
+            animation: shine 0.5s ease-in-out;
+        }
+
+        @keyframes shine {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .footer {
+            margin-top: 30px;
+            color: #7F8C8D;
+            font-size: 0.9em;
+        }
+
+        .cat-eyes {
+            font-size: 50px;
+            margin: 20px 0;
+            animation: eyeBlink 3s ease-in-out infinite;
+        }
+
+        @keyframes eyeBlink {
+            0%, 95%, 100% { opacity: 1; }
+            97% { opacity: 0.2; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="cat-container">
+            <svg viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">
+                <!-- Celá kočka jako jedna jednotka pro animaci -->
+                <g class="cat-whole">
+                    <!-- Ocas (mává) -->
+                    <path class="cat-tail" d="M 140 180 Q 170 150 175 100 Q 180 80 175 50" fill="none" stroke="#FFFFFF" stroke-width="20" stroke-linecap="round"/>
+                    <!-- Růžové pruhy na ocasě -->
+                    <path class="cat-tail" d="M 140 180 Q 170 150 175 100" fill="none" stroke="#FFB6D9" stroke-width="10" stroke-linecap="round" opacity="0.7"/>
+                    
+                    <!-- Tělo -->
+                    <ellipse cx="100" cy="130" rx="48" ry="60" fill="#FFFFFF" stroke="none"/>
+                    <!-- Růžové pruhy na těle -->
+                    <ellipse cx="100" cy="110" rx="45" ry="8" fill="#FFD9E8" opacity="0.6"/>
+                    <ellipse cx="100" cy="140" rx="45" ry="8" fill="#FFD9E8" opacity="0.6"/>
+                    <ellipse cx="100" cy="160" rx="40" ry="6" fill="#FFD9E8" opacity="0.6"/>
+                    
+                    <!-- Hlava -->
+                    <circle cx="100" cy="60" r="38" fill="#FFFFFF" stroke="none"/>
+                    
+                    <!-- Levé ucho -->
+                    <polygon points="72,28 60,0 80,30" fill="#FFFFFF" stroke="none"/>
+                    <polygon points="72,25 68,12 75,28" fill="#FFD9E8" opacity="0.7"/>
+                    
+                    <!-- Pravé ucho -->
+                    <polygon points="128,28 140,0 120,30" fill="#FFFFFF" stroke="none"/>
+                    <polygon points="128,25 132,12 125,28" fill="#FFD9E8" opacity="0.7"/>
+                    
+                    <!-- Levé oko -->
+                    <circle cx="82" cy="50" r="7" fill="#2C3E50"/>
+                    <circle cx="84" cy="48" r="2.5" fill="#FFFFFF"/>
+                    
+                    <!-- Pravé oko -->
+                    <circle cx="118" cy="50" r="7" fill="#2C3E50"/>
+                    <circle cx="120" cy="48" r="2.5" fill="#FFFFFF"/>
+                    
+                    <!-- Nos -->
+                    <polygon points="100,65 96,71 104,71" fill="#FFB6D9"/>
+                    
+                    <!-- Ústa -->
+                    <path d="M 100 71 Q 95 76 90 74" fill="none" stroke="#2C3E50" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M 100 71 Q 105 76 110 74" fill="none" stroke="#2C3E50" stroke-width="1.5" stroke-linecap="round"/>
+                    
+                    <!-- Fousáky -->
+                    <line x1="65" y1="58" x2="35" y2="54" stroke="#2C3E50" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+                    <line x1="65" y1="65" x2="32" y2="68" stroke="#2C3E50" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+                    <line x1="135" y1="58" x2="165" y2="54" stroke="#2C3E50" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+                    <line x1="135" y1="65" x2="168" y2="68" stroke="#2C3E50" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+                    
+                    <!-- Přední levá tlaška -->
+                    <ellipse cx="78" cy="185" rx="12" ry="18" fill="#FFFFFF"/>
+                    <ellipse cx="78" cy="188" rx="10" ry="8" fill="#FFD9E8" opacity="0.7"/>
+                    
+                    <!-- Přední pravá tlaška -->
+                    <ellipse cx="122" cy="185" rx="12" ry="18" fill="#FFFFFF"/>
+                    <ellipse cx="122" cy="188" rx="10" ry="8" fill="#FFD9E8" opacity="0.7"/>
+                    
+                    <!-- Zadní tlapky (náznak) -->
+                    <ellipse cx="88" cy="190" rx="8" ry="10" fill="#FFD9E8" opacity="0.5"/>
+                    <ellipse cx="112" cy="190" rx="8" ry="10" fill="#FFD9E8" opacity="0.5"/>
+                </g>
+            </svg>
+        </div>
+        <h1>Kočičí Věštírna</h1>
+        <p class="subtitle">Tajná moudrost kočiček čeká na tebe...</p>
+
+        <div class="fortune-box">
+            <div class="fortune-text" id="fortune">
+                Klikni na tlačítko a nechej věštit jedinou opravdovou věštkyni - kočku! 🔮
+            </div>
+        </div>
+
+        <div class="button-container">
+            <button onclick="getFortuneFromCat()">Věštět mě! 🐱✨</button>
+        </div>
+
+        <div class="footer">
+            <p>© 2026 Kočičí Věštírna | Všechna práva vyhrazena kočkám 🐾</p>
+        </div>
+    </div>
+
+    <script>
+        const fortunes = [
+            "Vidím tě... Vidím, že ses dnes nechal léňoví. To se kočce líbí! Více spánku a méně prací! 💤",
+            "Tvoje budoucnost je jasná - budeme spolu relaxovat na slunci! Není na tom nic špatného! ☀️",
+            "Vrhaná kostka mluví: Zítra si dáš rybu. Je to věstba nebo přání? Já vím! 🐟",
+            "Moje kočičí instinkty vidí nebezpečí! Psy se blíží! Utíkej na stůl! 🏃",
+            "Věda hovoří: Jsi přesně tam, kde bys měl být - místo, kde se můžu koukat z okna. 🪟",
+            "Čtu ti z lesklých očí: Dnes bude den plný překvapení a mnoho vrčení! 😸",
+            "Hlasitě si mňoukám věštbu: MRŇAU! To znamená, že bys měl koupit rybu. Nebo pamlsky. Nebo oboje! 🐾",
+            "Moje osmá barva vidí budoucnost: Budeš kouřit s lehkou studenou a čekat... Čekat na co? Na mě! 😻",
+            "Věští se mi, že někdo chce koukat do mé duše. Ale kočka nemá duši, má jen kozy! Mrrr! 🐱",
+            "Podle staré kočičí pověsti: Když se oči lesknou v noci, znamená to velkou změnu. Buď připraven! ✨",
+            "Vidím v tě dřímající potenciál. Pojď se koukat se mnou! Může to trvat pár hodin... Nebo dní! 😴",
+            "Moje věštba je jednoznačná: Kal na botě? Nakopu to co nejdál! Tak budoucnost vypadá! 👢",
+            "Slyším hlasy z kočičích dimenzí: Budeš mít štěstí! Nebo smůlu. Záleží, jestli si mě dáš pomazlit! 🐾",
+            "Hmm, teď vidím zvláštní symbol... Je to... Misky s jídlem! To není věstba, to je jen můj hlad! 🍽️",
+            "Věšticí kočka věští: Budeš koukat do mobilní obrazovky a cítit se viňový. Jako vždycky! 📱",
+            "Moje třetí oko vidí: V příštím týdnu se stane něco nekočičího. Patrně normální lidská věc. 🙄",
+            "Podle mě? Máš přesně tolik štěstí, kolik je chlupů na mém ocasu - a to je SPOUSTY! 🐈",
+            "Věšticí instinkt mi říká: Cokoliv se chystáš dělat - zpomal a línej se na to! 😼",
+            "Vidím tě v zrcadle budoucnosti... Kouješ tam a jesteš spokojený. To je všechno, co potřebuješ! 🪞",
+            "Moje věštba: Něco kouklíčího se v tobě probouzí. Gratuluji! Jsi half-kočka! 🎉"
+        ];
+
+        function getFortuneFromCat() {
+            const button = event.target;
+            button.classList.add('shine');
+            
+            // Random kočičí zvuky
+            const sounds = ["Mňau!", "Mrrr!", "Prr!", "Myáu!", "Chrup!", "Frrr!"];
+            const randomSound = sounds[Math.floor(Math.random() * sounds.length)];
+            
+            // Animace - oči blikají
+            const eyes = document.querySelector('.cat-eyes');
+            eyes.style.animation = 'none';
+            setTimeout(() => {
+                eyes.style.animation = '';
+            }, 10);
+            
+            // Náhodná věštba
+            const randomIndex = Math.floor(Math.random() * fortunes.length);
+            const fortuneText = document.getElementById('fortune');
+            
+            // Animace zmizel/objevil se text
+            fortuneText.style.opacity = '0';
+            setTimeout(() => {
+                fortuneText.textContent = randomSound + " " + fortunes[randomIndex];
+                fortuneText.style.opacity = '1';
+                fortuneText.style.transition = 'opacity 0.5s ease-in-out';
+            }, 300);
+            
+            setTimeout(() => {
+                button.classList.remove('shine');
+            }, 500);
+        }
+
+        // Tlačítko se dá aktivovat i entrem
+        document.querySelector('button').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                getFortuneFromCat();
+            }
+        });
+    </script>
+</body>
+</html>

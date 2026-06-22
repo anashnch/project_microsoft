@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kočičí Věštírna</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #FF4D94 0%, #FF6BB6 50%, #FF85CC 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .main-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 40px;
+            padding: 60px 40px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+            max-width: 650px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #2C3E50;
+            font-size: 2.8em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .subtitle {
+            color: #FF4D94;
+            font-size: 1.1em;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        .cat-section {
+            margin: 40px 0;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        svg {
+            width: 280px;
+            height: 280px;
+            filter: drop-shadow(0 10px 25px rgba(100, 50, 150, 0.15));
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-25px); }
+        }
+
+        @keyframes tailWag {
+            0%, 100% { transform: rotate(-12deg); transform-origin: 50% 0%; }
+            50% { transform: rotate(15deg); transform-origin: 50% 0%; }
+        }
+
+        .cat-body {
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        .cat-tail {
+            animation: tailWag 1.2s ease-in-out infinite;
+        }
+
+        .fortune-display {
+            background: linear-gradient(135deg, #FFF5FB 0%, #F5E6FF 100%);
+            border: 3px solid #E8B4E8;
+            border-radius: 25px;
+            padding: 35px;
+            margin: 30px 0;
+            min-height: 130px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .fortune-text {
+            color: #2C3E50;
+            font-size: 1.25em;
+            line-height: 1.6;
+            font-weight: 500;
+            font-style: italic;
+        }
+
+        .fortune-text.loading {
+            opacity: 0.5;
+            color: #9B59B6;
+        }
+
+        .button-wrapper {
+            margin: 40px 0;
+        }
+
+        button {
+            background: linear-gradient(135deg, #9B59B6 0%, #8E44AD 100%);
+            color: white;
+            border: none;
+            padding: 18px 45px;
+            font-size: 1.15em;
+            border-radius: 35px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(155, 89, 182, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(155, 89, 182, 0.4);
+            background: linear-gradient(135deg, #8E44AD 0%, #7D3C98 100%);
+        }
+
+        button:active {
+            transform: translateY(-2px);
+        }
+
+        button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .footer {
+            margin-top: 40px;
+            color: #95A5A6;
+            font-size: 0.95em;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .fortune-text {
+            animation: fadeIn 0.5s ease-in;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <h1>🔮 Kočičí Věštírna 🔮</h1>
+        <p class="subtitle">Tajná moudrost kočky čeká na tebe...</p>
+
+        <div class="cat-section">
+            <svg viewBox="0 0 200 280" xmlns="http://www.w3.org/2000/svg">
+                <!-- Skupina s animací pro skok -->
+                <g class="cat-body">
+                    <!-- Ocas (mává) -->
+                    <path class="cat-tail" d="M 145 160 Q 175 130 180 70 Q 182 40 175 20" 
+                          fill="none" stroke="#9B59B6" stroke-width="22" stroke-linecap="round"/>
+                    
+                    <!-- Tělo -->
+                    <ellipse cx="100" cy="150" rx="52" ry="70" fill="#FFFFFF"/>
+                    <!-- Pruhy na těle -->
+                    <ellipse cx="100" cy="120" rx="50" ry="12" fill="#E8B4E8" opacity="0.5"/>
+                    <ellipse cx="100" cy="155" rx="50" ry="12" fill="#E8B4E8" opacity="0.5"/>
+                    <ellipse cx="100" cy="185" rx="48" ry="10" fill="#E8B4E8" opacity="0.5"/>
+                    
+                    <!-- Hlava -->
+                    <circle cx="100" cy="65" r="45" fill="#FFFFFF"/>
+                    
+                    <!-- Levé ucho -->
+                    <polygon points="68,28 55,0 75,32" fill="#FFFFFF"/>
+                    <polygon points="68,28 62,10 72,30" fill="#E8B4E8" opacity="0.7"/>
+                    
+                    <!-- Pravé ucho -->
+                    <polygon points="132,28 145,0 125,32" fill="#FFFFFF"/>
+                    <polygon points="132,28 138,10 128,30" fill="#E8B4E8" opacity="0.7"/>
+                    
+                    <!-- Levé oko -->
+                    <circle cx="80" cy="55" r="8" fill="#2C3E50"/>
+                    <circle cx="83" cy="52" r="3" fill="#FFFFFF"/>
+                    
+                    <!-- Pravé oko -->
+                    <circle cx="120" cy="55" r="8" fill="#2C3E50"/>
+                    <circle cx="123" cy="52" r="3" fill="#FFFFFF"/>
+                    
+                    <!-- Nos -->
+                    <polygon points="100,72 95,80 105,80" fill="#FF85CC"/>
+                    
+                    <!-- Ústa -->
+                    <path d="M 100 80 Q 94 86 88 82" fill="none" stroke="#2C3E50" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M 100 80 Q 106 86 112 82" fill="none" stroke="#2C3E50" stroke-width="2" stroke-linecap="round"/>
+                    
+                    <!-- Fousáky -->
+                    <line x1="62" y1="62" x2="30" y2="58" stroke="#2C3E50" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="62" y1="70" x2="28" y2="75" stroke="#2C3E50" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="138" y1="62" x2="170" y2="58" stroke="#2C3E50" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="138" y1="70" x2="172" y2="75" stroke="#2C3E50" stroke-width="1.5" stroke-linecap="round"/>
+                    
+                    <!-- Přední levá tlaška -->
+                    <ellipse cx="78" cy="215" rx="14" ry="22" fill="#FFFFFF"/>
+                    <ellipse cx="78" cy="220" rx="12" ry="10" fill="#E8B4E8" opacity="0.6"/>
+                    
+                    <!-- Přední pravá tlaška -->
+                    <ellipse cx="122" cy="215" rx="14" ry="22" fill="#FFFFFF"/>
+                    <ellipse cx="122" cy="220" rx="12" ry="10" fill="#E8B4E8" opacity="0.6"/>
+                </g>
+            </svg>
+        </div>
+
+        <div class="fortune-display">
+            <div class="fortune-text" id="fortune">
+                Klikni na tlačítko a nechej věštit... 🐱✨
+            </div>
+        </div>
+
+        <div class="button-wrapper">
+            <button onclick="getFortuneFromCat()" id="fortuneBtn">Věštět Mě! 🔮</button>
+        </div>
+
+        <div class="footer">
+            <p>💜 © 2026 Kočičí Věštírna | Věštba každé kočky je jedinečná 💜</p>
+        </div>
+    </div>
+
+    <script>
+        const fortunes = [
+            "Mňau! Vidím v křišťálové kouli... že dneska budeš hodně líný. To je věstba! 😸",
+            "Prr prr! Hvězdy mluví: Dnes ti bude skvěle, pokud budeš spát na slunci. Věř v to! ☀️",
+            "Mňau mňau! Kočičí věštci vidí: V příštím týdnu si dáš něco chutného. Rybu! 🐟",
+            "Frrr! Moje magická kočičí oko vidí: Budoucnost je jasná - bude to... kulatý den! 🌙",
+            "Myáu! Podívám se do tví duše a vidím: Měl bys koupit kočku. Já jsem ta správná! 😻",
+            "Mrňau! Věští se mi, že něco velkého tě čeká. Pravděpodobně moje tlapka na tvé tváři! 🐾",
+            "Chrup! Věštba říká: Zítra bude den, kdy se nebudeš muset ničeho bát. Jen piš vodu! 💧",
+            "Prr! Moje osmá barva vidí budoucnost: Setkáš se s někým důležitým... Se mnou! 🎉",
+            "Mňau! Věštkyně kočka vám hlásí: Štěstí přijde v balíčku. Balíčku s pamlsky! 🎁",
+            "Frrr frrr! Čtu ti z tvých očí: Jsi osoba, která zná hodnotu dobrého posezení. Správně! 😺",
+            "Myáu myáu! Kočičí věstba: V lednu, únoru, březnu... vlastně celoročně budeš koukat na mě. 👀",
+            "Mňau! Hvězdy mluví kočičím jazykem: Tvoje budoucnost je... vláčitá a měkká. Jako já! 🧡",
+            "Prr! Magické oko kočky vidí: Něco tě v životě změní. Pravděpodobně adopce kočky! 😹",
+            "Chrup chrup! Věšticí kočka věští: Měl bys si odpustit víc času na odpočinek. Slušej mě! 😴",
+            "Frrr! Podle древних kočičích zákonů: Štěstí přijde k těm, co si dají zdravou snídani. Z ryb! 🍽️",
+            "Mňau! Vidím v kouči budoucnosti: Budeš v pokoji... s kočkou. To je nejlepší věstba! 💕",
+            "Myáu! Kočičí věda mluví: Máš přesně tolik štěstí, kolik má kočka životů. Tedy 9x! ✨",
+            "Prr prr! Věstba z astrologických vln: Konec týdne bude pěkný, když si nekoupíš záclony. 🪟",
+            "Mňau mňau! Věštkyně vidí: Tvoje osud je spojený s jedním zvířetem - mnou! Kočkou! 🐱",
+            "Frrr! Poslední věstba dne: Zítra vstaneš, pak si dáš snídani, pak si lehnešš. Perfekt! 😻"
+        ];
+
+        const catSounds = ["Mňau!", "Prr!", "Myáu!", "Mrrr!", "Frrr!", "Chrup!"];
+
+        function getFortuneFromCat() {
+            const button = document.getElementById('fortuneBtn');
+            const fortuneDiv = document.getElementById('fortune');
+            
+            // Disable button
+            button.disabled = true;
+            
+            // Add loading effect
+            fortuneDiv.classList.add('loading');
+            fortuneDiv.textContent = 'Kočka věští...';
+            
+            // Simulate thinking time
+            setTimeout(() => {
+                // Get random fortune and sound
+                const randomFortune = fortunes[Math.floor(Math.random() * fortunes.length)];
+                const randomSound = catSounds[Math.floor(Math.random() * catSounds.length)];
+                
+                // Display result
+                fortuneDiv.classList.remove('loading');
+                fortuneDiv.textContent = randomSound + ' ' + randomFortune;
+                
+                // Enable button
+                button.disabled = false;
+            }, 1000);
+        }
+
+        // Allow keyboard activation
+        document.getElementById('fortuneBtn').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                getFortuneFromCat();
+            }
+        });
+    </script>
+</body>
+</html>
